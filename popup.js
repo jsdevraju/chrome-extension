@@ -14,34 +14,6 @@ const cities = document.querySelectorAll(".city");
 const btn = document.querySelector(".submit");
 const search = document.querySelector(".search");
 
-//Default city when the page loads
-let cityInput = "Dhaka";
-
-// Add cities event to city in the panel
-cities.forEach((city) => {
-  city.addEventListener("click", (e) => {
-    // change from default to the clicked one
-    cityInput = e.target.innerHTML;
-
-    fetchWeatherData();
-    app.style.opacity = "0";
-  });
-});
-
-
-//Add submit event to form
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (search.value.length == 0) {
-    alert("Please type you City Name");
-  } else {
-    cityInput = search.value;
-    fetchWeatherData();
-    search.value = "";
-    app.style.opacity = "0";
-  }
-});
-
 //Checking Day
 function dayOfTheWeek() {
   switch (new Date().getDay()) {
@@ -70,9 +42,15 @@ function dayOfTheWeek() {
 }
 
 //Fetch Data Form Weather Api
-function fetchWeatherData() {
+async function fetchWeatherData() {
+  //Based on ip track user location
+  const res = await fetch(
+    `https://extreme-ip-lookup.com/json/?key=vu7lGZRX8ppJ0m6Pt9zM`
+  );
+  const data = await res.json();
+
   fetch(
-    `http://api.weatherapi.com/v1/current.json?key=7fa5846d95c54247b0362925222905&q=${cityInput}`
+    `http://api.weatherapi.com/v1/current.json?key=7fa5846d95c54247b0362925222905&q=${data?.city}`
   )
     .then((res) => res.json())
     .then((data) => {
@@ -88,10 +66,9 @@ function fetchWeatherData() {
       timeOutput.innerHTML = time;
       nameOutput.innerHTML = data.location.name;
 
-     
-      document.addEventListener('beforeload', () =>{
+      document.addEventListener("beforeload", () => {
         const iconId = data.current.condition.icon;
-        icon.src = `${iconId}`
+        icon.src = `${iconId}`;
       });
 
       cloudOutput.innerHTML = data.current.cloud + "%";
@@ -178,7 +155,149 @@ function fetchWeatherData() {
     })
 
     .catch(() => {
-      alert("City not found, Please try agin");
       app.style.opacity = "1";
     });
 }
+
+fetchWeatherData();
+
+// Display Digital Clock
+function showTime() {
+  let date = new Date();
+  let h = date.getHours(); // 0 - 23
+  let m = date.getMinutes(); // 0 - 59
+  let s = date.getSeconds(); // 0 - 59
+  let session = "AM";
+
+  if (h == 0) {
+    h = 12;
+  }
+
+  if (h > 12) {
+    h = h - 12;
+    session = "PM";
+  }
+
+  h = h < 10 ? "0" + h : h;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+
+  let time = h + ":" + m + ":" + s + " " + session;
+  document.getElementById("displayClock").innerText = time;
+  document.getElementById("displayClock").textContent = time;
+
+  setTimeout(showTime, 1000);
+}
+
+showTime();
+
+//Theme
+const themeImg = document.querySelectorAll(".main_themeImg");
+
+themeImg.forEach((img) => {
+  img.addEventListener("click", () => {
+    app.style.backgroundImage = `url(${img.src})`;
+  });
+});
+
+// Add todo list
+// store all variable
+const todoInput = document.querySelector(".todoInput");
+const clearBtn = document.querySelector(".clearBtn");
+const taskBox = document.querySelector(".taskBox");
+const todoBtn = document.querySelector(".todoBtn");
+
+// which one checking define variable here
+let editId = "";
+let isEditTask = false;
+
+// get all todos from local Storage
+let todos = JSON.parse(localStorage.getItem("todo-list"));
+
+// Show Our Todo List
+const showTodo = () => {
+  let liTag = "";
+  if (todos) {
+    const revdata = todos.reverse();
+    revdata.forEach(({name}, id) => {
+      // html template
+      liTag += `<li class="task">
+                    <input type="checkbox" id="${id}" class='checkBoxInput'>
+                    <p class='todoName'>${name}</p>
+                            <div class="settings">
+                                <ul class="taskMenu">
+                                    <button data-id="${id}" data-item="${name}" class='edit'><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                                    <button data-id="${id}" class='delete'><i class="fa-solid fa-trash"></i>Delete</button>
+                                </ul>
+                            </div>
+                        </li>`;
+    });
+  }
+  taskBox.innerHTML = liTag || `<span>You don't have any task here</span>`;
+};
+
+showTodo();
+
+//Add Delete Button Selector
+const editBtn = document.querySelectorAll(".edit");
+const deleteBtn = document.querySelectorAll(".delete");
+
+
+// Edit Task FUnction
+const editTask = (taskId, textName) => {
+  editId = taskId;
+  isEditTask = true;
+  todoInput.value = textName;
+  todoInput.focus();
+  todoBtn.innerHTML = isEditTask ? "Update Task" : "Add Task"
+};
+
+// Delete Task Function
+const deleteTask = (deleteId) => {
+  isEditTask = false;
+  todos.splice(deleteId, 1);
+  localStorage.setItem("todo-list", JSON.stringify(todos));
+  showTodo();
+};
+
+// Delete ALl Function
+clearBtn.addEventListener("click", () => {
+  isEditTask = false;
+  todos.splice(0, todos.length);
+  localStorage.setItem("todo-list", JSON.stringify(todos));
+  showTodo();
+});
+
+// fire a event when user typing anything
+todoBtn.addEventListener("click", (e) => {
+  let todo = todoInput.value.trim();
+  if(!todo) return alert('Add something');
+  if (!isEditTask) {
+    todos = !todos ? [] : todos;
+    let addTodo = { name: todo, status: "pending" };
+    todos.push(addTodo);
+  } else {
+    todos[editId].name = todo;
+    isEditTask = false;
+  }
+  // When User Submit Form Value is Empty
+  todoInput.value = "";
+  // Set All Todo In Local Storage
+  localStorage.setItem("todo-list", JSON.stringify(todos));
+  showTodo();
+});
+
+editBtn?.forEach((btn) =>{
+  btn.addEventListener("click", () => {
+    const id = btn.getAttribute("data-id");
+    const item = btn.getAttribute("data-item");
+    editTask(id, item);
+  });
+})
+
+deleteBtn?.forEach((btn) =>{
+  btn.addEventListener('click', () =>{
+    const id = btn.getAttribute("data-id");
+    deleteTask(id);
+  })
+})

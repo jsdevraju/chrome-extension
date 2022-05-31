@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/action_32.png" type="image/x-icon">
+     <!-- Font Awesome Url -->
+   <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+   integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+ />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>New Tab</title>
     <link rel="stylesheet" href="./popup.css">
+    <title>New Tab</title>
 </head>
 <body>
     <div class="weather-app">
@@ -40,49 +49,37 @@
     </div>
     </div>
 
-        <div class="panel">
-            <form class="locationInput">
-                <input 
-                type="text" 
-                class="search"
-                placeholder="Search Location ">
-                <button type="submit" class="submit">
-                    <i class="uil uil-search"></i>
-        
-                </button>
-        
-            </form>
-        
-            <ul class="cities">
-                <li class="city">New York</li>
-                <li class="city">Paris</li>
-                <li class="city">Dhaka</li>
-              
-            </ul>
-        
-            <ul class="details">
-                <h4>weather Details</h4>
-                <li>
-                    <span>cloudy</span>
-                    <span class="cloudy"> 89%</span>
-                </li>
-                <li>
-                    <span>Humidity</span>
-                    <span class="humidity">64%</span>
-                    
-                </li>
-                <li>
-                    <span>wind</span>
-                    <span class="wind"> 8km/h</span>
-                </li>
-               
-            </ul>
-        
+    <!-- Digital Clock -->
+    <div id="displayClock" class="clock"></div>
+    <!-- Theme -->
+    <div class="theme">
+        <div class="theme_img">
+            <span>Select Theme</span><img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg" alt="Razu Islam" class="main_themeImg">
+        </div>
+        <div class="theme_img">
+            <span>Select Theme</span> <img src="https://cdn.pixabay.com/photo/2021/12/09/11/53/empire-state-building-6858030_960_720.jpg" alt="Razu Islam" class="main_themeImg" />
+        </div>
+       
+    </div>
+    <!-- Add todo -->
+    <div class="todo">
+        <div class="taskInput">
+            <input type="text" placeholder="Add a new task" class="todoInput">
+            <button class="todoBtn">AddTodo</button>
+          </div>
+          <div class="controls">
+            <div class="filters">
+              <span class="active" id="all">All</span>
             </div>
+            <button class="clearBtn">Delete All</button>
+          </div>
+          <ul class="taskBox"></ul>
+    </div>
+
 
     </div>
 
     
-    <script src="./popup.js"></script>
+    <script type="text/javascript" src="./popup.js"></script>
 </body>
 </html>
