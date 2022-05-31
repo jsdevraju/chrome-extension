@@ -1,0 +1,20 @@
+{
+    "name": "Weather Application",
+    "version": "0.1.0",
+    "description": "It's show your current location weather",
+    "permissions": ["storage", "activeTab"],
+    "host_permissions": ["<all_urls>"],
+    "chrome_url_overrides":{
+      "newtab":"newtab.html"
+    },
+    "action": {
+      "default_icon": {
+        "16": "assets/ext-icon.png",
+        "24": "assets/ext-icon.png",
+        "32": "assets/ext-icon.png"
+      },
+      "default_title": "My Weather",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
