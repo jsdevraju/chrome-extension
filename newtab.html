@@ -29,6 +29,7 @@
                 <h1 class="name">usa</h1>
            
             <small>
+                <!-- Digital Clock -->
                 <span class="time"> 06 : 45</span>
                 - 
                 <span class="date"> 
@@ -49,15 +50,13 @@
     </div>
     </div>
 
-    <!-- Digital Clock -->
-    <div id="displayClock" class="clock"></div>
     <!-- Theme -->
     <div class="theme">
         <div class="theme_img">
             <span>Select Theme</span><img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg" alt="Razu Islam" class="main_themeImg">
         </div>
         <div class="theme_img">
-            <span>Select Theme</span> <img src="https://cdn.pixabay.com/photo/2021/12/09/11/53/empire-state-building-6858030_960_720.jpg" alt="Razu Islam" class="main_themeImg" />
+            <span>Select Theme</span> <img src="https://cdn.pixabay.com/photo/2021/12/09/11/53/empire-state-building-6858030_960_720.jpg" alt="Razu Islam" class="main_themeImg" theme="music" />
         </div>
        
     </div>
@@ -76,10 +75,111 @@
           <ul class="taskBox"></ul>
     </div>
 
+    <!-- Music Player -->
+    <div class="music_wrapper">
+        <div class="music_player">
+            <h1>welcome to music world</h1>
+            <button class="list"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div class="music_wrapper">
+                <audio
+                    class="audio"
+                    src="https://www.rafaelalucas.com/dailyui/9/songs/song3.mp3"
+                >
+                </audio>
+                <div class="music_img">
+                    <img src="https://i0.wp.com/cdn.dribbble.com/users/2522172/screenshots/14762728/media/295c37d0b17413f127145fd20bce3781.png?w=1200&ssl=1" class="mus_img" alt="Razu Islam" />
+                </div>
+                <div class="music_info">
+                    <h4>Lean On (feat. MQ)</h4>
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
+                <div class="music_controller">
+                    <div class="progress"></div>
+                    <div class="music_player_play">
+                        <span class="left">1:22</span>
+                    <span class="right">1:22</span>
+                    </div>
+                </div>
+                <div class="music_audio_controller">
+                    <button class="music_btn" id="prev">Prev</button>
+                    <button class="music_btn" id="play_pause">Play</button>
+                    <button class="music_btn" id="next">Next</button>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="music_btn" id="heart"><i class="fa-solid fa-heart"></i></button>
+                <button class="music_btn" id="volbtn"><i class="fa-solid fa-volume-high"></i></button>
+                <div class="volume_popup">
+                    <input
+                class="volume"
+                type="range"
+                max="100"
+                min="0"
+                step="1"
+                value="100"
+              />
+                </div>
+            </div>
+        </div>
+        <!-- Music List Popup -->
+        <div class="music_popup">
+            <h5>Play Music</h5>
+            <div class="music_list">
+                <div class="single_music">
+                    <div class="single_musicImg">
+                        <img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg"  alt="Razu Islam" />
+                    </div>
+                    <div class="music_single_info">
+                        <h5>Music Name</h5>
+                        <span>AvaList - Razu Islam</span>
+                    </div>
+                </div>
+                <div class="single_music">
+                    <div class="single_musicImg">
+                        <img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg"  alt="Razu Islam" />
+                    </div>
+                    <div class="music_single_info">
+                        <h5>Music Name</h5>
+                        <span>AvaList - Razu Islam</span>
+                    </div>
+                </div>
+                <div class="single_music">
+                    <div class="single_musicImg">
+                        <img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg"  alt="Razu Islam" />
+                    </div>
+                    <div class="music_single_info">
+                        <h5>Music Name</h5>
+                        <span>AvaList - Razu Islam</span>
+                    </div>
+                </div>
+                <div class="single_music">
+                    <div class="single_musicImg">
+                        <img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg"  alt="Razu Islam" />
+                    </div>
+                    <div class="music_single_info">
+                        <h5>Music Name</h5>
+                        <span>AvaList - Razu Islam</span>
+                    </div>
+                </div>
+                <div class="single_music">
+                    <div class="single_musicImg">
+                        <img src="https://cdn.pixabay.com/photo/2022/05/18/10/27/sea-7204955_960_720.jpg"  alt="Razu Islam" />
+                    </div>
+                    <div class="music_single_info">
+                        <h5>Music Name</h5>
+                        <span>AvaList - Razu Islam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </div>
 
-    
+    <script src="./js/weather.js"></script>
+    <script src="./js/digitalClock.js"></script>
+    <script src="./js/musicPlayer.js"></script>
     <script type="text/javascript" src="./popup.js"></script>
+
 </body>
 </html>

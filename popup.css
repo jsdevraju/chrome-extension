@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@500&family=Average&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,100&family=Martel:wght@200&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@400;600&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap');
 
 * {
     margin: 0;
@@ -7,10 +7,222 @@
 }
 
 body {
-
-    font-family: 'Rubik', sans-serif;
     background: #111;
+}
 
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    font-family: 'Lato', sans-serif;
+}
+
+input,
+div,
+button {
+    font-family: 'Roboto', sans-serif;
+}
+
+.music_theme .todo {
+    display: none;
+}
+
+/* Music Player */
+
+.music_theme .music_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.music_theme .music_wrapper .music_player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+    height: 75vh;
+    background-color: #fff;
+    color: #111;
+    padding: 2em;
+    border-radius: 40px;
+    box-shadow: 0 5px 5px 5px #0000004f;
+    width: 400px;
+    position: relative;
+}
+
+.music_player h1 {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.music_img img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+    outline: 2px solid #e74500de;
+    padding: 0.5em;
+}
+
+.music_img {
+    margin-top: 1em;
+}
+
+.music_info {
+    text-align: center;
+}
+
+.music_info h4 {
+    font-size: 1em;
+    color: #393737;
+    font-style: italic;
+}
+
+.music_info {
+    margin-top: 1.5em;
+    line-height: 20px;
+}
+
+.music_info span {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #8f8f8f;
+    font-weight: 400;
+}
+
+.music_controller {
+    position: relative;
+    margin-top: 1em;
+    width: 100%;
+}
+
+.progress {
+    width: 100%;
+    background: #ddd;
+    height: 5px;
+    border: 2px solid #ddd;
+    padding: 0.2em;
+    border-radius: 50px;
+    position: relative;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: #fc8c80;
+    border-radius: 50px;
+}
+
+.list {
+    position: absolute;
+    top: 30px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 1.5em;
+    right: 40px;
+    cursor: pointer;
+}
+
+.music_player_play {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.music_player_play span {
+    font-size: 0.7em;
+    color: #919191;
+}
+
+.music_audio_controller {
+    display: flex;
+    gap: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.music_popup {
+    position: absolute;
+    bottom: -1000px;
+    z-index: 10;
+    background: #f9f9f9;
+    width: 400px;
+    border-radius: 40px;
+    padding: 1em;
+    color: #333;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.music_popup.active {
+    visibility: visible;
+    opacity: 1;
+    bottom: 0;
+}
+
+.single_musicImg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.music_popup h5 {
+    font-size: 1em;
+}
+
+.music_list {
+    margin-top: 1em;
+}
+
+.single_music {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.volume_popup input {
+    transform: rotate(-90deg);
+}
+
+.volume_popup {
+    position: absolute;
+    bottom: 105px;
+    right: 0px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.volume_popup.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Music Player */
+.music_wrapper {
+    display: none;
 }
 
 .theme {
@@ -19,6 +231,7 @@ body {
     right: 30px;
     display: flex;
     align-items: center;
+    z-index: 11;
 }
 
 .theme_img {
@@ -61,6 +274,10 @@ body {
     background: rgba(0, 0, 0, 0.3);
     z-index: 0;
 
+}
+
+.weather img {
+    object-fit: cover;
 }
 
 .container {
@@ -106,17 +323,6 @@ body {
 .weather img {
     display: block;
     margin: 0.5em 0;
-}
-
-.clock {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: #17D4FE;
-    font-size: 60px;
-    font-family: Orbitron;
-    letter-spacing: 7px;
 }
 
 /* Todo */
